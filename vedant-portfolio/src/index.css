@@ -1,0 +1,680 @@
+:root,
+:root[data-theme="light"] {
+  --text: #1c1c1e;
+  --muted: #6b7280;
+  --link: #1c1c1e;
+  --accent: #1c1c1e;
+  --rule: #e4e4e7;
+  --code-bg: #f7f7f8;
+  --page: #ffffff;
+  --card: #ffffff;
+  --card-rule: #e9e9ec;
+  --ghost: #ececef;
+  --shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.35);
+  --measure: 760px;
+}
+
+:root[data-theme="dark"] {
+  --text: #f2f2f4;
+  --muted: #8b8b93;
+  --link: #f2f2f4;
+  --accent: #f2f2f4;
+  --rule: #232326;
+  --code-bg: #141416;
+  --page: #0a0a0b;
+  --card: #161618;
+  --card-rule: #262629;
+  --ghost: #1a1a1c;
+  --shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.9);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--page);
+  color: var(--text);
+  font-family: "Poppins", system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+.page {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ---------- edge blur ---------- */
+
+.edge {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 90px;
+  z-index: 20;
+  pointer-events: none;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.edge-top {
+  top: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--page) 12%,
+    color-mix(in srgb, var(--page) 55%, transparent) 55%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(to bottom, #000 45%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 100%);
+}
+
+.edge-bottom {
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    var(--page) 12%,
+    color-mix(in srgb, var(--page) 55%, transparent) 55%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(to top, #000 45%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, #000 45%, transparent 100%);
+}
+
+/* ---------- display font (used sparingly) ---------- */
+
+.display {
+  font-family: "Jersey 10 Charted", "Poppins", monospace;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* ---------- nav ---------- */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  gap: 26px;
+  align-items: center;
+  border-bottom: 1px solid var(--rule);
+  padding: 20px 0 12px;
+  margin-bottom: 56px;
+}
+
+.nav a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 4px 0;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  transition: color 0.2s ease;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: var(--text);
+}
+
+.nav .brand {
+  font-family: "Jersey 10 Charted", monospace;
+  font-size: 26px;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  margin-right: auto;
+  padding: 0;
+  line-height: 1;
+}
+
+.nav .brand:hover {
+  opacity: 0.6;
+}
+
+/* ---------- theme toggle ---------- */
+
+.toggle {
+  margin-left: 4px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.toggle:hover {
+  color: var(--text);
+  border-color: var(--text);
+}
+
+.toggle svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ---------- type ---------- */
+
+h1 {
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 6px;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 64px 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
+}
+
+h3 {
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 26px 0 6px;
+}
+
+p {
+  margin: 0 0 18px;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+}
+
+a:hover {
+  border-bottom-color: var(--text);
+}
+
+.sub {
+  color: var(--muted);
+  font-size: 15px;
+  margin: 0 0 26px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+strong {
+  font-weight: 500;
+}
+
+ul {
+  margin: 0 0 18px;
+  padding-left: 18px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+li::marker {
+  color: var(--muted);
+}
+
+/* ---------- bits ---------- */
+
+.links {
+  font-size: 15px;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.links a {
+  white-space: nowrap;
+  border-bottom: none;
+  color: var(--muted);
+}
+
+.links a:hover {
+  color: var(--text);
+}
+
+.portrait {
+  width: 132px;
+  height: 132px;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+  margin: 4px 0 12px;
+}
+
+blockquote {
+  margin: 30px 0;
+  padding: 0 0 0 20px;
+  border-left: 1px solid var(--rule);
+  font-size: 17px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text);
+}
+
+blockquote .attrib {
+  display: block;
+  font-size: 13px;
+  font-style: normal;
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 18px 20px;
+  overflow-x: auto;
+  margin: 26px 0;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.92em;
+}
+
+p code {
+  background: var(--code-bg);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+.entry {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.entry:last-of-type {
+  border-bottom: none;
+}
+
+.entry h3 {
+  margin-top: 0;
+}
+
+.entry p:last-child {
+  margin-bottom: 0;
+}
+
+.entry .meta {
+  font-family: "Jersey 10 Charted", monospace;
+  color: var(--muted);
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  margin: 0 0 2px;
+  line-height: 1;
+}
+
+.tags {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.tags a {
+  color: var(--muted);
+}
+
+.tags a:hover {
+  color: var(--text);
+}
+
+footer.foot {
+  border-top: 1px solid var(--rule);
+  margin-top: 56px;
+  padding-top: 18px;
+  color: var(--muted);
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+footer.foot .sig {
+  font-family: "Jersey 10 Charted", monospace;
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  color: var(--text);
+  line-height: 1;
+}
+
+/* ---------- experience (expandable) ---------- */
+
+.exp {
+  border-bottom: 1px solid var(--rule);
+}
+
+.exp:last-of-type {
+  border-bottom: none;
+}
+
+.exp-head {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: none;
+  border: none;
+  padding: 20px 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.exp-mark {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  margin-top: 4px;
+  display: grid;
+  place-items: center;
+  background: var(--ghost);
+  color: var(--muted);
+  border: 1px solid var(--rule);
+  border-radius: 11px;
+  transition: color 0.2s ease;
+}
+
+.exp-head:hover .exp-mark,
+.exp.open .exp-mark {
+  color: var(--text);
+}
+
+.exp-mark svg {
+  width: 18px;
+  height: 18px;
+}
+
+.exp-id {
+  display: block;
+  min-width: 0;
+}
+
+.exp-company {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.exp-chevron {
+  width: 14px;
+  height: 14px;
+  color: var(--muted);
+  transform: rotate(180deg);
+  transition: transform 0.3s ease, color 0.2s ease;
+}
+
+.exp.open .exp-chevron {
+  transform: rotate(0deg);
+  color: var(--text);
+}
+
+.exp-role {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.exp-via {
+  display: block;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.exp-via a,
+.exp-via .u {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  border-bottom: none;
+}
+
+.exp-via a:hover {
+  color: var(--text);
+}
+
+.exp-period {
+  margin-left: auto;
+  padding-left: 16px;
+  flex: none;
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.exp-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+}
+
+.exp.open .exp-body {
+  grid-template-rows: 1fr;
+}
+
+.exp-body-inner {
+  overflow: hidden;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.exp-text {
+  margin: 0;
+  padding: 0 0 24px 50px;
+  line-height: 1.7;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.exp.open .exp-text {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- kaizen ---------- */
+
+.kaizen {
+  display: flex;
+  justify-content: center;
+  margin: -20px 0 44px;
+}
+
+.kaizen-word {
+  position: relative;
+  font-family: "Noto Serif JP", serif;
+  font-size: 64px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  color: var(--ghost);
+  cursor: default;
+  padding: 6px 0 10px;
+  transition: color 0.4s ease;
+  outline: none;
+}
+
+.kaizen-word:hover,
+.kaizen-word:focus-visible {
+  color: var(--text);
+}
+
+.kaizen-card {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  width: 320px;
+  transform: translate(-50%, 6px);
+  background: var(--card);
+  border: 1px solid var(--card-rule);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 18px 20px 20px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  z-index: 5;
+}
+
+.kaizen-word:hover .kaizen-card,
+.kaizen-word:focus-visible .kaizen-card {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+.kaizen-card::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  width: 11px;
+  height: 11px;
+  background: var(--card);
+  border-left: 1px solid var(--card-rule);
+  border-top: 1px solid var(--card-rule);
+  border-radius: 2px 0 0 0;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.kaizen-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--card-rule);
+}
+
+.kaizen-head .jp {
+  font-family: "Noto Serif JP", serif;
+  font-size: 24px;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.kaizen-head .dash {
+  flex: 1;
+  height: 1px;
+  background: var(--card-rule);
+  position: relative;
+}
+
+.kaizen-head .dash::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--muted);
+  transform: translate(-50%, -50%);
+}
+
+.kaizen-head .romaji {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.kaizen-pos {
+  font-family: "Jersey 10 Charted", monospace;
+  font-size: 16px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin: 14px 0 6px;
+  line-height: 1;
+}
+
+.kaizen-def {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text);
+  margin: 0;
+}
+
+@media (max-width: 620px) {
+  body {
+    font-size: 15px;
+  }
+  h1 {
+    font-size: 26px;
+  }
+  .nav {
+    gap: 18px;
+  }
+  .nav .brand {
+    font-size: 22px;
+  }
+  .kaizen-word {
+    font-size: 52px;
+  }
+  .kaizen-card {
+    width: min(300px, 84vw);
+  }
+  .kaizen-card {
+    width: min(300px, 82vw);
+  }
+  .portrait {
+    width: 112px;
+    height: 112px;
+  }
+}
