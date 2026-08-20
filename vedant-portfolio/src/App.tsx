@@ -211,7 +211,7 @@ const Home = () => (
       <a href={LINKS.resume} target="_blank" rel="noreferrer">Résumé</a>
     </p>
 
-    <img className="portrait" src={profile} alt="Vedant Shelake" />
+    <img className="portrait" src={} alt="Vedant Shelake" />
 
     <h2>Current Focus</h2>
 
